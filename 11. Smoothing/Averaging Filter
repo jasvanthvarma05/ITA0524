@@ -1,0 +1,8 @@
+import cv2
+
+image = cv2.imread(r'C:\Users\jasva\OneDrive\Pictures\Frame.jpg')
+smoothed_image = cv2.blur(image, (5, 5))
+
+cv2.imshow('Smoothed Image', smoothed_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
