@@ -1,17 +1,11 @@
 import cv2
 import numpy as np
-
-image = cv2.imread(r'C:\Users\jasva\OneDrive\Pictures\Frame.jpg', cv2.IMREAD_GRAYSCALE)
-
-roberts_cross_x = np.array([[1, 0], [0, -1]])
-roberts_cross_y = np.array([[0, 1], [-1, 0]])
-
-roberts_x = cv2.filter2D(image, -1, roberts_cross_x)
-roberts_y = cv2.filter2D(image, -1, roberts_cross_y)
-roberts_combined = cv2.magnitude(roberts_x, roberts_y)
-
-cv2.imshow('Original Image', image)
-cv2.imshow('Roberts Edge Detection', roberts_combined)
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+import matplotlib.pyplot as plt
+img = cv2.imread('C:\\Users\\deves\\Downloads\\CV IMAGES\\images.jpeg', 0)
+roberts_x = np.array([[1, 0], [0, -1]], dtype=np.float32)
+roberts_y = np.array([[0, 1], [-1, 0]], dtype=np.float32)
+edge_x = cv2.filter2D(img, cv2.CV_32F, roberts_x)
+edge_y = cv2.filter2D(img, cv2.CV_32F, roberts_y)
+roberts = cv2.magnitude(edge_x, edge_y)
+plt.imshow(roberts, cmap='gray')
+plt.show()
